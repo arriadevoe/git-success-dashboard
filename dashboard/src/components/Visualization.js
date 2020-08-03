@@ -4,30 +4,11 @@ import { DownOutlined } from "@ant-design/icons";
 
 const { Content } = Layout;
 
-const Visualization = () => {
+const Visualization = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({});
 
-  useEffect(() => {
-    fetch(
-      "http://0.0.0.0:5000/visualization/top10contributors/kubernetes/kubernetes",
-      {
-        method: "GET",
-        headers: {
-          Authorization: process.env.REACT_APP_GH_TOKEN,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("Success", response);
-        setData(response);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log("Error:", err);
-      });
-  }, []);
+
 
   const chooseVisualization = ({ key }) => {
     console.log(`Click on item ${key}`);
@@ -40,7 +21,7 @@ const Visualization = () => {
     </Menu>
   );
 
-  const content = <Empty description="No Visualization Loaded" />;
+  let content = <Empty description="No Visualization Loaded" />;
 
   if (isLoading) {
       content = <Spin />
