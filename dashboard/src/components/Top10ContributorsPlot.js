@@ -3,13 +3,13 @@ import React from "react";
 import Plot from "react-plotly.js";
 
 const Top10ContributorsPlot = (props) => {
-
   return (
     <Plot
       data={[
         {
           x: props.data.user,
           y: props.data.total_commits,
+          text: props.data.followers,
           type: "scatter",
           mode: "markers",
           marker: {
@@ -17,6 +17,10 @@ const Top10ContributorsPlot = (props) => {
             color: props.data.followers,
             showscale: true,
           },
+          hovertemplate:
+            "<b>%{x}</b><br>" +
+            "Followers: %{text}<br>" +
+            "<extra></extra>",
         },
       ]}
       layout={{
