@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Layout, Spin } from "antd";
+import { Layout, Spin, Avatar } from "antd";
 
 import Visualization from "./components/Visualization";
 
@@ -70,7 +70,16 @@ const App = () => {
     <Layout className="screen">
       <Sider className="side-panels">
         <Content className="owner-panel">
-          {loadingLeftSummary ? <Spin /> : JSON.stringify(leftSummaryData[0])}
+          {loadingLeftSummary ? (
+            <Spin />
+          ) : (
+            <>
+              <Avatar src={leftSummaryData[0].avatar_url} size="large" />
+              {/* gh_url */}
+              <p>{leftSummaryData[0].name}</p>
+              <p>{leftSummaryData[0].login}</p>
+            </>
+          )}
         </Content>
         <Content className="repo-panel">
           {loadingLeftSummary ? <Spin /> : JSON.stringify(leftSummaryData[1])}
@@ -111,7 +120,12 @@ const App = () => {
             {loadingRightSummary ? (
               <Spin />
             ) : (
-              JSON.stringify(rightSummaryData[0])
+              <>
+                <Avatar src={rightSummaryData[0].avatar_url} size="large" />
+                {/* gh_url */}
+                <p>{rightSummaryData[0].name}</p>
+                <p>{rightSummaryData[0].login}</p>
+              </>
             )}
           </Content>
           <Content className="repo-panel">
