@@ -4,6 +4,7 @@ import { Layout, Spin, Empty, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 import Top10ContributorsPlot from "./Top10ContributorsPlot";
+import YearlyCommitActivityPlot from "./YearlyCommitActivityPlot";
 
 const { Content } = Layout;
 
@@ -23,6 +24,7 @@ const Visualization = (props) => {
     )
       .then((response) => response.json())
       .then((response) => {
+        response = JSON.parse(response)
         console.log("Success", response);
         setData(response);
         setIsLoading(false);
@@ -47,8 +49,10 @@ const Visualization = (props) => {
 
   if (isLoading) {
     content = <Spin />;
-  } else if (props.visualization == "top-10-contributors") {
-    content = <Top10ContributorsPlot data={data} />;
+  } else if (props.visualization === "top-10-contributors") {
+    content = <Top10ContributorsPlot data={data} repo={props.repo} />;
+  } else if (props.visualization === "yearly-commit-activity") {
+    content = <YearlyCommitActivityPlot data={data} repo={props.repo} />;
   }
 
   return (

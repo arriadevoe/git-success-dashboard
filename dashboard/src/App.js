@@ -19,13 +19,13 @@ const App = () => {
     "top-10-contributors"
   );
   const [leftVisualization2, setLeftVisualization2] = useState(
-    "top-10-contributors"
+    "yearly-commit-activity"
   );
   const [rightVisualization1, setRightVisualization1] = useState(
     "top-10-contributors"
   );
   const [rightVisualization2, setRightVisualization2] = useState(
-    "top-10-contributors"
+    "yearly-commit-activity"
   );
 
   useEffect(() => {

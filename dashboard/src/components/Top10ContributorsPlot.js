@@ -21,7 +21,7 @@ const Top10ContributorsPlot = (props) => {
       ]}
       layout={{
         width: "100%",
-        title: "Top 10 All-Time Contributors",
+        title: `Top 10 All-Time Contributors: ${props.repo}`,
         xaxis: {
           tickangle: 45,
         },
