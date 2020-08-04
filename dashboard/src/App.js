@@ -74,6 +74,7 @@ const App = () => {
             <Spin />
           ) : (
             <>
+              <p>{"Owner"}</p>
               <Avatar src={leftSummaryData[0].avatar_url} size="large" />
               {/* gh_url */}
               <p>{leftSummaryData[0].name}</p>
@@ -82,7 +83,22 @@ const App = () => {
           )}
         </Content>
         <Content className="repo-panel">
-          {loadingLeftSummary ? <Spin /> : JSON.stringify(leftSummaryData[1])}
+          {loadingLeftSummary ? <Spin /> : (
+            <>
+              <p>{"Repository"}</p>
+              <p>{leftSummaryData[1].full_name}</p>
+              <p>{leftSummaryData[1].description}</p>
+              <p>{`Last Updated: ${leftSummaryData[1].updated}`}</p>
+              {/* homepage_url */}
+              {/* languages_url */}
+              <p>{`Watchers: ${leftSummaryData[1].watchers}`}</p>
+              <p>{`Stars: ${leftSummaryData[1].stars}`}</p>
+              <p>{`Forks: ${leftSummaryData[1].forks}`}</p>
+              <p>{`Contributors: ${leftSummaryData[1].contributors}`}</p>
+              <p>{`Total Commits: ${leftSummaryData[1].total_commits}`}</p>
+              <p>{`Open Pull Requests: ${leftSummaryData[1].open_pull_requests}`}</p>
+            </>
+          )}
         </Content>
         <Content className="search-panel">Search</Content>
       </Sider>
@@ -121,6 +137,7 @@ const App = () => {
               <Spin />
             ) : (
               <>
+                <p>{"Owner"}</p>
                 <Avatar src={rightSummaryData[0].avatar_url} size="large" />
                 {/* gh_url */}
                 <p>{rightSummaryData[0].name}</p>
@@ -132,7 +149,20 @@ const App = () => {
             {loadingRightSummary ? (
               <Spin />
             ) : (
-              JSON.stringify(rightSummaryData[1])
+              <>
+                <p>{"Repository"}</p>
+                <p>{rightSummaryData[1].full_name}</p>
+                <p>{rightSummaryData[1].description}</p>
+                <p>{`Last Updated: ${rightSummaryData[1].updated}`}</p>
+                {/* homepage_url */}
+                {/* languages_url */}
+                <p>{`Watchers: ${rightSummaryData[1].watchers}`}</p>
+                <p>{`Stars: ${rightSummaryData[1].stars}`}</p>
+                <p>{`Forks: ${rightSummaryData[1].forks}`}</p>
+                <p>{`Contributors: ${rightSummaryData[1].contributors}`}</p>
+                <p>{`Total Commits: ${rightSummaryData[1].total_commits}`}</p>
+                <p>{`Open Pull Requests: ${rightSummaryData[1].open_pull_requests}`}</p>
+              </>
             )}
           </Content>
           <Content className="search-panel">Search</Content>
