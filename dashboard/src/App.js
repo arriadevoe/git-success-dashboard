@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Layout, Spin } from "antd";
 
 import Visualization from "./components/Visualization";
@@ -14,6 +15,18 @@ const App = () => {
   const [rightSummaryData, setRightSummaryData] = useState({});
   const [loadingLeftSummary, setLoadingLeftSummary] = useState(true);
   const [loadingRightSummary, setLoadingRightSummary] = useState(true);
+  const [leftVisualization1, setLeftVisualization1] = useState(
+    "top-10-contributors"
+  );
+  const [leftVisualization2, setLeftVisualization2] = useState(
+    "top-10-contributors"
+  );
+  const [rightVisualization1, setRightVisualization1] = useState(
+    "top-10-contributors"
+  );
+  const [rightVisualization2, setRightVisualization2] = useState(
+    "top-10-contributors"
+  );
 
   useEffect(() => {
     fetch(`http://0.0.0.0:5000/repo-summary/${leftRepository}`, {
@@ -66,27 +79,47 @@ const App = () => {
       </Sider>
       <Layout>
         <Content className="content">
-          <Visualization repo={leftRepository} />
+          <Visualization
+            visualization={leftVisualization1}
+            repo={leftRepository}
+          />
         </Content>
         <Content className="content">
-          <Visualization repo={leftRepository} />
+          <Visualization
+            visualization={leftVisualization2}
+            repo={leftRepository}
+          />
         </Content>
       </Layout>
       <Layout>
         <Layout>
           <Content className="content">
-            <Visualization repo={rightRepository} />
+            <Visualization
+              visualization={rightVisualization1}
+              repo={rightRepository}
+            />
           </Content>
           <Content className="content">
-            <Visualization repo={rightRepository} />
+            <Visualization
+              visualization={rightVisualization2}
+              repo={rightRepository}
+            />
           </Content>
         </Layout>
         <Sider className="side-panels">
           <Content className="owner-panel">
-            {loadingRightSummary ? <Spin /> : JSON.stringify(rightSummaryData[0])}
+            {loadingRightSummary ? (
+              <Spin />
+            ) : (
+              JSON.stringify(rightSummaryData[0])
+            )}
           </Content>
           <Content className="repo-panel">
-            {loadingRightSummary ? <Spin /> : JSON.stringify(rightSummaryData[1])}
+            {loadingRightSummary ? (
+              <Spin />
+            ) : (
+              JSON.stringify(rightSummaryData[1])
+            )}
           </Content>
           <Content className="search-panel">Search</Content>
         </Sider>

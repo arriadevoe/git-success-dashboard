@@ -1,41 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Plot from "react-plotly.js";
 
-const Top10ContributorsPlot = () => {
+const Top10ContributorsPlot = (props) => {
 
-  useEffect(() => {
-    fetch(
-      "http://0.0.0.0:5000/visualization/top10contributors/kubernetes/kubernetes",
-      {
-        method: "GET",
-        headers: {
-          Authorization: process.env.REACT_APP_GH_TOKEN,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("Success", response);
-        setData(response);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log("Error:", err);
-      });
-  }, []);
-  
   return (
     <Plot
       data={[
         {
-          x: data.user,
-          y: data.total_commits,
+          x: props.data.user,
+          y: props.data.total_commits,
           type: "scatter",
           mode: "markers",
           marker: {
             size: 20,
-            color: data.followers,
+            color: props.data.followers,
             showscale: true,
           },
         },

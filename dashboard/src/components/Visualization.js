@@ -1,14 +1,36 @@
 import React, { useEffect, useState } from "react";
+
 import { Layout, Spin, Empty, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+
+import Top10ContributorsPlot from "./Top10ContributorsPlot";
 
 const { Content } = Layout;
 
 const Visualization = (props) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
 
-
+  useEffect(() => {
+    fetch(
+      `http://0.0.0.0:5000/visualization/${props.visualization}/${props.repo}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: process.env.REACT_APP_GH_TOKEN,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("Success", response);
+        setData(response);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Error:", err);
+      });
+  }, []);
 
   const chooseVisualization = ({ key }) => {
     console.log(`Click on item ${key}`);
@@ -24,9 +46,9 @@ const Visualization = (props) => {
   let content = <Empty description="No Visualization Loaded" />;
 
   if (isLoading) {
-      content = <Spin />
-  } else if (data) {
-      content = <Spin />
+    content = <Spin />;
+  } else if (props.visualization == "top-10-contributors") {
+    content = <Top10ContributorsPlot data={data} />;
   }
 
   return (
