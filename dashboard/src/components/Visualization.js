@@ -27,7 +27,6 @@ const Visualization = (props) => {
       .then((response) => response.json())
       .then((response) => {
         response = JSON.parse(response);
-        console.log("Success", response);
         setData(response);
         setIsLoading(false);
       })
@@ -40,11 +39,13 @@ const Visualization = (props) => {
     setIsLoading(true);
 
     switch(key) {
-      case 1:
+      case "1":
         setCurrentVisualization("top-10-contributors");
-      case 2:
+      case "2":
+        console.log(key)
         setCurrentVisualization("yearly-commit-activity");
-      case 3:
+        break;
+      case "3":
         setCurrentVisualization("yearly-code-frequency");
     }    
   };
