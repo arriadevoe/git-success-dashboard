@@ -5,16 +5,18 @@ import { DownOutlined } from "@ant-design/icons";
 
 import Top10ContributorsPlot from "./Top10ContributorsPlot";
 import YearlyCommitActivityPlot from "./YearlyCommitActivityPlot";
+import YearlyCodeFrequencyPlot from "./YearlyCodeFrequencyPlot";
 
 const { Content } = Layout;
 
 const Visualization = (props) => {
+  const [currentVisualization, setCurrentVisualization] = useState(props.defaultVisualization);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
 
   useEffect(() => {
     fetch(
-      `http://0.0.0.0:5000/visualization/${props.visualization}/${props.repo}`,
+      `http://0.0.0.0:5000/visualization/${currentVisualization}/${props.repo}`,
       {
         method: "GET",
         headers: {
@@ -32,10 +34,19 @@ const Visualization = (props) => {
       .catch((err) => {
         console.log("Error:", err);
       });
-  }, []);
+  }, [currentVisualization]);
 
   const chooseVisualization = ({ key }) => {
-    console.log(`Click on item ${key}`);
+    setIsLoading(true);
+
+    switch(key) {
+      case 1:
+        setCurrentVisualization("top-10-contributors");
+      case 2:
+        setCurrentVisualization("yearly-commit-activity");
+      case 3:
+        setCurrentVisualization("yearly-code-frequency");
+    }    
   };
 
   const menu = (
@@ -50,11 +61,11 @@ const Visualization = (props) => {
 
   if (isLoading) {
     content = <Spin />;
-  } else if (props.visualization === "top-10-contributors") {
+  } else if (currentVisualization === "top-10-contributors") {
     content = <Top10ContributorsPlot data={data} repo={props.repo} />;
-  } else if (props.visualization === "yearly-commit-activity") {
+  } else if (currentVisualization === "yearly-commit-activity") {
     content = <YearlyCommitActivityPlot data={data} repo={props.repo} />;
-  } else if (props.visualization === "yearly-code-frequency") {
+  } else if (currentVisualization === "yearly-code-frequency") {
     content = <YearlyCodeFrequencyPlot data={data} repo={props.repo} />;
   }
 

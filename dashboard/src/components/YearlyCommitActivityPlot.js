@@ -16,9 +16,9 @@ const YearlyCommitActivityPlot = (props) => {
       layout={{
         width: "100%",
         title: `Yearly Commit Activity: ${props.repo}`,
-        xaxis: {
-          tickangle: 45,
-        },
+        // xaxis: {
+        //   tickangle: 45,
+        // },
         yaxis: {
           title: "Total Commits",
         },

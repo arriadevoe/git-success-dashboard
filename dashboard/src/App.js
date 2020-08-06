@@ -105,13 +105,13 @@ const App = () => {
       <Layout>
         <Content className="content">
           <Visualization
-            visualization={leftVisualization1}
+            defaultVisualization={leftVisualization1}
             repo={leftRepository}
           />
         </Content>
         <Content className="content">
           <Visualization
-            visualization={leftVisualization2}
+            defaultVisualization={leftVisualization2}
             repo={leftRepository}
           />
         </Content>
@@ -120,13 +120,13 @@ const App = () => {
         <Layout>
           <Content className="content">
             <Visualization
-              visualization={rightVisualization1}
+              defaultVisualization={rightVisualization1}
               repo={rightRepository}
             />
           </Content>
           <Content className="content">
             <Visualization
-              visualization={rightVisualization2}
+              defaultVisualization={rightVisualization2}
               repo={rightRepository}
             />
           </Content>
