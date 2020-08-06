@@ -8,6 +8,9 @@ import "./App.less";
 
 const { Sider, Content } = Layout;
 
+const defaultVisualization1 = "top-10-contributors";
+const defaultVisualization2 = "yearly-commit-activity";
+
 const App = () => {
   const [leftRepository, setLeftRepository] = useState("kubernetes/kubernetes");
   const [rightRepository, setrightRepository] = useState("apache/spark");
@@ -15,18 +18,6 @@ const App = () => {
   const [rightSummaryData, setRightSummaryData] = useState({});
   const [loadingLeftSummary, setLoadingLeftSummary] = useState(true);
   const [loadingRightSummary, setLoadingRightSummary] = useState(true);
-  const [leftVisualization1, setLeftVisualization1] = useState(
-    "top-10-contributors"
-  );
-  const [leftVisualization2, setLeftVisualization2] = useState(
-    "yearly-commit-activity"
-  );
-  const [rightVisualization1, setRightVisualization1] = useState(
-    "top-10-contributors"
-  );
-  const [rightVisualization2, setRightVisualization2] = useState(
-    "yearly-commit-activity"
-  );
 
   useEffect(() => {
     fetch(`http://0.0.0.0:5000/repo-summary/${leftRepository}`, {
@@ -37,7 +28,6 @@ const App = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("Success", response);
         setLeftSummaryData(response);
         setLoadingLeftSummary(false);
       })
@@ -53,7 +43,6 @@ const App = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("Success", response);
         setRightSummaryData(response);
         setLoadingRightSummary(false);
       })
@@ -61,10 +50,6 @@ const App = () => {
         console.log("Error:", err);
       });
   }, []);
-
-  // useEffect(() => {
-
-  // }, [leftRepository, rightRepository])
 
   return (
     <Layout className="screen">
@@ -105,13 +90,13 @@ const App = () => {
       <Layout>
         <Content className="content">
           <Visualization
-            defaultVisualization={leftVisualization1}
+            defaultVisualization={defaultVisualization1}
             repo={leftRepository}
           />
         </Content>
         <Content className="content">
           <Visualization
-            defaultVisualization={leftVisualization2}
+            defaultVisualization={defaultVisualization2}
             repo={leftRepository}
           />
         </Content>
@@ -120,13 +105,13 @@ const App = () => {
         <Layout>
           <Content className="content">
             <Visualization
-              defaultVisualization={rightVisualization1}
+              defaultVisualization={defaultVisualization1}
               repo={rightRepository}
             />
           </Content>
           <Content className="content">
             <Visualization
-              defaultVisualization={rightVisualization2}
+              defaultVisualization={defaultVisualization2}
               repo={rightRepository}
             />
           </Content>
