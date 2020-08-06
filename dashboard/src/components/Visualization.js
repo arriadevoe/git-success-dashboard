@@ -24,7 +24,7 @@ const Visualization = (props) => {
     )
       .then((response) => response.json())
       .then((response) => {
-        response = JSON.parse(response)
+        response = JSON.parse(response);
         console.log("Success", response);
         setData(response);
         setIsLoading(false);
@@ -41,7 +41,8 @@ const Visualization = (props) => {
   const menu = (
     <Menu onClick={chooseVisualization}>
       <Menu.Item key="1">Top 10 All-Time Contributors</Menu.Item>
-      <Menu.Item key="2">2nd menu item</Menu.Item>
+      <Menu.Item key="2">Yearly Commit Activity</Menu.Item>
+      <Menu.Item key="3">Yearly Code Frequency</Menu.Item>
     </Menu>
   );
 
@@ -53,6 +54,8 @@ const Visualization = (props) => {
     content = <Top10ContributorsPlot data={data} repo={props.repo} />;
   } else if (props.visualization === "yearly-commit-activity") {
     content = <YearlyCommitActivityPlot data={data} repo={props.repo} />;
+  } else if (props.visualization === "yearly-code-frequency") {
+    content = <YearlyCodeFrequencyPlot data={data} repo={props.repo} />;
   }
 
   return (
