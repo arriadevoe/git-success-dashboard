@@ -11,12 +11,14 @@ const YearlyCodeFrequency = (props) => {
           x: props.data.week,
           y: props.data.additions,
           type: "bar",
+          name: "Additions",
           "marker.color": "green"
         },
         {
           x: props.data.week,
           y: props.data.deletions,
           type: "bar",
+          name: "Deletions",
           "marker.color": "red"
         },
       ]}
