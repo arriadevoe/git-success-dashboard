@@ -8,6 +8,7 @@ import YearlyCommitActivityPlot from "./YearlyCommitActivityPlot";
 import YearlyCodeFrequencyPlot from "./YearlyCodeFrequencyPlot";
 import DailyCommitsPlot from "./DailyCommitsPlot";
 import IssueActivityPlot from "./IssueActivityPlot";
+import IssueCommentsPlot from "./IssueCommentsPlot";
 
 const { Content } = Layout;
 
@@ -46,15 +47,15 @@ const Visualization = (props) => {
       case "1":
         setCurrentVisualization("top-10-contributors");
       case "2":
-        console.log(key);
         setCurrentVisualization("yearly-commit-activity");
-        break;
       case "3":
         setCurrentVisualization("yearly-code-frequency");
       case "4":
         setCurrentVisualization("daily-commits");
       case "5":
         setCurrentVisualization("issue-activity");
+      case "6":
+        setCurrentVisualization("issue-comments");
     }
   };
 
@@ -65,6 +66,7 @@ const Visualization = (props) => {
       <Menu.Item key="3">Yearly Code Frequency</Menu.Item>
       <Menu.Item key="4">Daily Commits</Menu.Item>
       <Menu.Item key="5">Issue Activity</Menu.Item>
+      <Menu.Item key="6">Issue Comments</Menu.Item>
     </Menu>
   );
 
@@ -82,6 +84,8 @@ const Visualization = (props) => {
     content = <DailyCommitsPlot data={data} repo={props.repo} />;
   } else if (currentVisualization === "issue-activity") {
     content = <IssueActivityPlot data={data} repo={props.repo} />;
+  } else if (currentVisualization === "issue-comments") {
+    content = <IssueCommentsPlot data={data} repo={props.repo} />;
   }
 
   return (
