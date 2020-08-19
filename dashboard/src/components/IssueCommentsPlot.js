@@ -12,7 +12,7 @@ const IssueCommentsPlot = (props) => {
           y: props.data.total_comments,
           type: "scatter",
           text: props.data.body_length,
-          // mode: "markers",
+          mode: "markers",
           marker: {
             size: 10,
             // size: props.data.body_length, 
