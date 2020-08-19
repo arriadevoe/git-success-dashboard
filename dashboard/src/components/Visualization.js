@@ -47,6 +47,8 @@ const Visualization = (props) => {
         break;
       case "3":
         setCurrentVisualization("yearly-code-frequency");
+      case "4":
+        setCurrentVisualization("daily-commits");
     }    
   };
 
@@ -55,6 +57,7 @@ const Visualization = (props) => {
       <Menu.Item key="1">Top 10 All-Time Contributors</Menu.Item>
       <Menu.Item key="2">Yearly Commit Activity</Menu.Item>
       <Menu.Item key="3">Yearly Code Frequency</Menu.Item>
+      <Menu.Item key="4">Daily Commits</Menu.Item>
     </Menu>
   );
 
@@ -67,6 +70,8 @@ const Visualization = (props) => {
   } else if (currentVisualization === "yearly-commit-activity") {
     content = <YearlyCommitActivityPlot data={data} repo={props.repo} />;
   } else if (currentVisualization === "yearly-code-frequency") {
+    content = <YearlyCodeFrequencyPlot data={data} repo={props.repo} />;
+  } else if (currentVisualization === "daily-commits") {
     content = <YearlyCodeFrequencyPlot data={data} repo={props.repo} />;
   }
 
