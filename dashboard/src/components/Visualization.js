@@ -46,16 +46,22 @@ const Visualization = (props) => {
     switch (key) {
       case "1":
         setCurrentVisualization("top-10-contributors");
+        break
       case "2":
         setCurrentVisualization("yearly-commit-activity");
+        break
       case "3":
         setCurrentVisualization("yearly-code-frequency");
+        break
       case "4":
         setCurrentVisualization("daily-commits");
+        break
       case "5":
         setCurrentVisualization("issue-activity");
+        break
       case "6":
         setCurrentVisualization("issue-comments");
+        break
     }
   };
 

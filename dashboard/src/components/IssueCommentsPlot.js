@@ -11,16 +11,18 @@ const IssueCommentsPlot = (props) => {
           x: props.data.created_at,
           y: props.data.total_comments,
           type: "scatter",
-          mode: "markers",
+          text: props.data.body_length,
+          // mode: "markers",
           marker: {
-            size: props.data.body_length, 
-            sizemode: 'area',
-            sizeref: 2*Math.max(props.data.body_length)/(40**2),
-            sizemin: 4
+            size: 10,
+            // size: props.data.body_length, 
+          //   sizemode: 'area',
+          //   sizeref: 2*Math.max(props.data.body_length)/(40**2),
+          //   sizemin: 4
           },
           hovertemplate:
           "Date Created: %{x}<br>" +
-          "Body Length: %{marker.size}<br>" +
+          "Body Length: %{text}<br>" +
           "Total Comments: %{y}<br>" +
           "<extra></extra>",
         },
@@ -30,7 +32,7 @@ const IssueCommentsPlot = (props) => {
         title: `Issue Comments for the Past 7 Days: ${props.repo}`,
         barmode: "stack",
         xaxis: {
-          title: "Date Created"
+          title: "Issue Date Created"
         },
         yaxis: {
           title: "Total Comments",
