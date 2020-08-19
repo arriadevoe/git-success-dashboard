@@ -14,7 +14,7 @@ const defaultVisualization2 = "yearly-commit-activity";
 
 const App = () => {
   const [leftRepository, setLeftRepository] = useState("kubernetes/kubernetes");
-  const [rightRepository, setrightRepository] = useState("apache/spark");
+  const [rightRepository, setRightRepository] = useState("apache/spark");
   const [leftSummaryData, setLeftSummaryData] = useState({});
   const [rightSummaryData, setRightSummaryData] = useState({});
   const [loadingLeftSummary, setLoadingLeftSummary] = useState(true);
