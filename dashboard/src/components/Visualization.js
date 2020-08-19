@@ -6,11 +6,14 @@ import { DownOutlined } from "@ant-design/icons";
 import Top10ContributorsPlot from "./Top10ContributorsPlot";
 import YearlyCommitActivityPlot from "./YearlyCommitActivityPlot";
 import YearlyCodeFrequencyPlot from "./YearlyCodeFrequencyPlot";
+import DailyCommitsPlot from "./DailyCommitsPlot";
 
 const { Content } = Layout;
 
 const Visualization = (props) => {
-  const [currentVisualization, setCurrentVisualization] = useState(props.defaultVisualization);
+  const [currentVisualization, setCurrentVisualization] = useState(
+    props.defaultVisualization
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
 
@@ -38,18 +41,18 @@ const Visualization = (props) => {
   const chooseVisualization = ({ key }) => {
     setIsLoading(true);
 
-    switch(key) {
+    switch (key) {
       case "1":
         setCurrentVisualization("top-10-contributors");
       case "2":
-        console.log(key)
+        console.log(key);
         setCurrentVisualization("yearly-commit-activity");
         break;
       case "3":
         setCurrentVisualization("yearly-code-frequency");
       case "4":
         setCurrentVisualization("daily-commits");
-    }    
+    }
   };
 
   const menu = (
@@ -72,7 +75,7 @@ const Visualization = (props) => {
   } else if (currentVisualization === "yearly-code-frequency") {
     content = <YearlyCodeFrequencyPlot data={data} repo={props.repo} />;
   } else if (currentVisualization === "daily-commits") {
-    content = <YearlyCodeFrequencyPlot data={data} repo={props.repo} />;
+    content = <DailyCommitsPlot data={data} repo={props.repo} />;
   }
 
   return (

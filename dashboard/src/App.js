@@ -9,7 +9,7 @@ import "./App.less";
 
 const { Sider, Content } = Layout;
 
-const defaultVisualization1 = "top-10-contributors";
+const defaultVisualization1 = "yearly-code-frequency";
 const defaultVisualization2 = "yearly-commit-activity";
 
 const App = () => {
